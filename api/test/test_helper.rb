@@ -10,7 +10,7 @@ class ActiveSupport::TestCase
   parallelize_setup do |worker|
     load "#{Rails.root}/db/seeds.rb"
   end
-  
+
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 
@@ -18,4 +18,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def active_user
+    User.find_by(activated: true)
+  end
 end
