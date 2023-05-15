@@ -12,3 +12,4 @@ export default ({ $axios }) => {
     console.log(e.response)
   })
  }
+ 
