@@ -1,25 +1,44 @@
 <template>
   <v-navigation-drawer
+    v-model="setDrawer"
     app
     clipped
     :mobile-breakpoint="mobileBreakpoint"
   >
     <v-list>
-      <v-divider />
-
+      <template
+      v-if="isBreakpoint"
+      >
+        <v-list-item
+        @click="$emit('update:drawer', false)"
+        >
+        <v-list-item-content
+        class="text-center"
+        >
+          <v-list-item-action-text
+          class="d-flex justify-center align-center"
+          >
+            <v-icon>
+              mdi-chevron-double-left
+            </v-icon>
+            閉じる
+          </v-list-item-action-text>
+        </v-list-item-content>
+        </v-list-item>
+        <v-divider />
+      </template>
       <v-list-item
-        href="https://blog.cloud-acct.com/categories/udemy"
-        target="_blank"
+        v-for="(nav, i) in navMenus"
+        :key="`nav-${i}`"
+        :to="$my.projectLinkTo($route.params.id, nav.name)"
       >
         <v-list-item-icon>
-          <v-icon>
-            mdi-open-in-new
-          </v-icon>
+          <v-icon>{{  nav.icon }}</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
           <v-list-item-title>
-            このアプリの作り方
+            {{ $my.pageTitle(nav.name) }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -29,9 +48,33 @@
 
 <script>
 export default {
+  props: {
+    drawer: {
+      type: Boolean,
+      default: null
+    }
+  },
   data () {
     return {
-      mobileBreakpoint: 960
+      mobileBreakpoint: 960,
+      navMenus: [
+        { name: 'project-id-dashboard', icon: 'mdi-view-dashboard' },
+        { name: 'project-id-layouts', icon: 'mdi-view-compact' },
+        { name: 'project-id-pages', icon: 'mdi-image' },
+        { name: 'project-id-components', icon: 'mdi-view-comfy' },
+        { name: 'project-id-settings', icon: 'mdi-cog' },
+        { name: 'project-id-help', icon: 'mdi-help-circle' }
+      ]
+    }
+  },
+  computed: {
+    setDrawer: {
+      get () { return this.drawer },
+      set (newVal) { return this.$emit('update:drawer', newVal) }
+    },
+    isBreakpoint () {
+      const windowWidth = this.$vuetify.breakpoint.width
+      return this.mobileBreakpoint > windowWidth
     }
   }
 }
