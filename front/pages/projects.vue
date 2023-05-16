@@ -110,7 +110,7 @@
             item-key="id"
             hide-default-footer
           >
-            <template v-slot:item.name="{ item }">
+            <template v-slot:[`item.name`]="{ item }">
               <nuxt-link
                 :to="$my.projectLinkTo(item.id)"
                 class="text-decoration-none"
@@ -118,7 +118,7 @@
                 {{ item.name }}
               </nuxt-link>
             </template>
-            <template v-slot:item.updatedAt="{ item }">
+            <template v-slot:[`item.updatedAt`]="{ item }">
               {{ $my.dateFormat(item.updatedAt) }}
             </template>
           </v-data-table>
@@ -142,9 +142,20 @@ export default {
       card: {
         sm: 6,
         md: 4,
-        height: 120,
+        height: 110,
         elevation: 4
-      }
+      },
+      tableHeaders: [
+        {
+          text: '名前',
+          value: 'name'
+        },
+        {
+          text: '更新日',
+          width: 150,
+          value: 'updatedAt'
+        }
+      ]
     }
   },
   computed: {
