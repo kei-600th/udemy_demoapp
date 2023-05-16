@@ -24,6 +24,9 @@
         登録する
         </v-btn>
       </v-form>
+      <v-card-text>
+        {{ params }}
+      </v-card-text>
     </template>
   </user-form-card>
 </template>
