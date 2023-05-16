@@ -19,8 +19,7 @@
         max-width="320"
         color="transparent"
       >
-        <!-- コンテンツを差し込むスロット -->
-        <slot name="form-card-content" />
+        <slot name="user-form-card-content" />
       </v-card>
     </v-row>
   </v-container>
