@@ -1,8 +1,14 @@
 <template>
   <v-app>
-    <logged-in-app-bar />
+    <logged-in-app-bar
+    ＃navigation-toggle-button
+    >
+      <v-app-bar-nav-icon
+      @click="drawer = !drawer"
+      />
+    </logged-in-app-bar>
+    <project-navigation-drawer />
     <v-main>
-      project.vue
       <nuxt />
     </v-main>
     <app-footer />
@@ -11,5 +17,10 @@
 
 <script>
 export default {
+  data () {
+    return {
+      drawer: null
+    }
+  }
 }
 </script>
