@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  middleware: 'get-project-current',
   data () {
     return {
       drawer: null
