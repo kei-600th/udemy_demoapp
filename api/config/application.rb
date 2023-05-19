@@ -40,6 +40,10 @@ module App
     config.i18n.default_locale = :ja
     config.add_autoload_paths_to_load_path = false
     config.middleware.use ActionDispatch::Cookies
+
+    # Cookiesのsamesite属性を変更する(Rails v6.1~, :strict, :lax, :none)
+    config.action_dispatch.cookies_same_site_protection =
+    ENV["COOKIES_SAME_SITE"].to_sym if Rails.env.production?
     config.api_only = true
   end
 end
