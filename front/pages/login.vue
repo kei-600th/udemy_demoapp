@@ -46,6 +46,7 @@
 <script>
 
 export default {
+  name: 'PagesLogin',
   layout: 'beforeLogin',
   data ({ $store }) {
     return {
