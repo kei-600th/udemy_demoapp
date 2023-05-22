@@ -52,8 +52,8 @@ export default {
     return {
       isValid: false,
       loading: false,
-      // TODO 削除する
-      params: { auth: { email: 'user0@example.com', password: 'password' } },
+      // params: { auth: { email: 'user0@example.com', password: 'password' } },
+      params: { auth: { email: '', password: '' } },
       // redirectPath: $store.state.loggedIn.homePath
       redirectPath: $store.state.loggedIn.rememberPath,
       loggedInHomePath: $store.state.loggedIn.homePath
@@ -80,7 +80,7 @@ export default {
         const msg = 'ユーザーが見つかりません；；'
         return this.$store.dispatch('getToast', { msg })
       }
-      // TODO エラー処理
+      return this.$my.apiErrorHandler(response)
     }
   }
 }
