@@ -77,6 +77,7 @@ import HomeCompany from '~/components/Home/HomeCompany'
 
 export default {
   name: 'PagesIndex',
+  middleware: ['logged-in-redirect'],
   components: {
     HomeAbout,
     HomeProducts,
